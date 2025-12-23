@@ -4,7 +4,13 @@ devstack test drive
 
 ## setup
 
-- need at least 40GB disk
+1. setup VM
+spec
+- disk: 40 GB
+- cpu: 6 core
+- memory: 12288 MB
+install ubuntu
+- set NOPASSWD to sudoers / sudo group
 
 1. get devstack
 ```shell
@@ -16,6 +22,7 @@ wget -O ./devstack/local.conf https://opendev.org/openstack/neutron/raw/branch/m
 ```conf
 HOST_IP=[VM IP]
 BRANCH=stable/2025.2
+#BRANCH=refs/remote/origin/stable/2025.2
 RECLONE=yes
 ```
 
@@ -29,6 +36,15 @@ in case of failure, try
 ./unstack.sh
 ./clean.sh
 sudo rm -rf /opt/stack
+```
+
+```shell
+This is your host IP address: 172.16.146.128
+This is your host IPv6 address: ::1
+Horizon is now available at http://172.16.146.128/dashboard
+Keystone is serving at http://172.16.146.128/identity/
+The default users are: admin and demo
+The password: password
 ```
 
 4. setup openrc in ~/.profile
